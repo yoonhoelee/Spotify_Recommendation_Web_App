@@ -1,19 +1,17 @@
 package spotify.recommendation.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Entity
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 public class Member extends BaseEntity{
 
@@ -36,6 +34,8 @@ public class Member extends BaseEntity{
     @NotEmpty
     @Enumerated(EnumType.STRING)
     private Sex sex;
+
+    private int preferredCluster;
 
     @JsonIgnore
     @OneToMany(mappedBy = "member")

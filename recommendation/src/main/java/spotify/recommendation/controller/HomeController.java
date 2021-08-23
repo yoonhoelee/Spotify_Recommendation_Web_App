@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import spotify.recommendation.login.argumentresolver.Login;
 import spotify.recommendation.entity.Member;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Slf4j
 @RequiredArgsConstructor
 @Controller
 public class HomeController {
+
     @GetMapping("/")
     public String homeLoginArgumentResolver(@Login Member loginMember, Model model) {
 //세션에 회원 데이터가 없으면 home

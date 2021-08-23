@@ -10,25 +10,21 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
-@Table(name = "Clustered")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Clustered {
 
     @Id @GeneratedValue
-    @Column(name = "order_id")
+    @Column(name = "song_id")
     private Long id;
 
     @NotNull
-    @Column(name = "song_name")
     private String songName;
 
     @NotNull
     private String artist;
 
     @NotNull
-    private int cluster_id;
-
-    private Long stream;
+    private int cluster;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
