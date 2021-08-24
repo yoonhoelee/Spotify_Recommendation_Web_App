@@ -39,7 +39,7 @@ public class Member extends BaseEntity{
 
     @JsonIgnore
     @OneToMany(mappedBy = "member")
-    private List<Clustered> cluster = new ArrayList<>();
+    private List<Clustered> clustered = new ArrayList<>();
 
     public Member(String email, String password, String name, int age, Sex sex) {
         this.email = email;

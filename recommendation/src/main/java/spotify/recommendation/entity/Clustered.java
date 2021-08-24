@@ -30,4 +30,10 @@ public class Clustered {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    public Clustered(String songName, String artist, int cluster, Member member) {
+        this.songName = songName;
+        this.artist = artist;
+        this.cluster = cluster;
+        this.member = member;
+    }
 }

@@ -11,5 +11,6 @@ import java.util.List;
 public interface ClusteredRepository extends JpaRepository<Clustered, Long>, ClusteredRepositoryCustom {
 
     List<Clustered> findByCluster(@Param("cluster") int cluster);
+    List<Clustered> findByMember_id(@Param("member_id") int member_id);
 
 }
