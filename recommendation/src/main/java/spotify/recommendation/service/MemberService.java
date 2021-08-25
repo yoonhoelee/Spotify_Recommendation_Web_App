@@ -1,6 +1,7 @@
 package spotify.recommendation.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -8,11 +9,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import spotify.recommendation.SessionConst;
 import spotify.recommendation.entity.Member;
 import spotify.recommendation.login.argumentresolver.Login;
-import spotify.recommendation.repository.ClusteredRepository;
 import spotify.recommendation.repository.MemberRepository;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,15 +21,9 @@ import java.util.Optional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final ClusteredRepository clusteredRepository;
 
-    HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-    Member loginMember = (Member) request.getAttribute(SessionConst.LOGIN_MEMBER);
-
-    public void savePreference(int cluster){
-
+    public void savePreference(@Login Member loginMember, int cluster){
         loginMember.setPreferredCluster(cluster);
-
     }
 
     public Long join(Member member) {
@@ -51,4 +44,6 @@ public class MemberService {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
+
+
 }

@@ -10,7 +10,6 @@ import spotify.recommendation.service.MemberService;
 @RequiredArgsConstructor
 public class LoginService {
 
-    private final MemberRepository memberRepository;
     private final MemberService memberService;
 
     public Member login(String email, String password){

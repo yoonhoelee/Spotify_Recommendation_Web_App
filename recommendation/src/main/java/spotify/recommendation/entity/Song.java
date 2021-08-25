@@ -1,36 +1,43 @@
 package spotify.recommendation.entity;
 
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
+
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Clustered {
+@Getter @Setter
+@NoArgsConstructor
+public class Song {
 
     @Id @GeneratedValue
     @Column(name = "song_id")
     private Long id;
 
-    @NotNull
+    @NotEmpty
+    @Column(name = "song_name")
     private String songName;
 
-    @NotNull
+    @NotEmpty
     private String artist;
 
-    @NotNull
+    @NotEmpty
     private int cluster;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    public Clustered(String songName, String artist, int cluster, Member member) {
+    public void setMember(Member member) {
+        this.member = member;
+        member.getSongs().add(this);
+    }
+
+    public Song(String songName, String artist, int cluster, Member member) {
         this.songName = songName;
         this.artist = artist;
         this.cluster = cluster;

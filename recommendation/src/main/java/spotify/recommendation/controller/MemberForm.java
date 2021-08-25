@@ -1,4 +1,4 @@
-package spotify.recommendation.dto;
+package spotify.recommendation.controller;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClusteredDto {
+public class SongDto {
 
     private String songName;
     private String artist;

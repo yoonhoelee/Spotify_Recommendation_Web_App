@@ -1,13 +1,14 @@
 package spotify.recommendation.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 @Entity
@@ -39,7 +40,7 @@ public class Member extends BaseEntity{
 
     @JsonIgnore
     @OneToMany(mappedBy = "member")
-    private List<Clustered> clustered = new ArrayList<>();
+    private List<Song> songs = new ArrayList<>();
 
     public Member(String email, String password, String name, int age, Sex sex) {
         this.email = email;
