@@ -19,6 +19,19 @@
             </button>
         </div>
         <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg" type="button"
+                    th:onclick="|location.href='@{/songs/list}'|">
+                전체 곡 보기
+            </button>
+        </div>
+        <div class="col">
+            <button class="w-100 btn btn-secondary btn-lg" type="button"
+                    th:onclick="|location.href='@{/members/memberInfo}'|">
+                회원 정보 보기
+            </button>
+        </div>
+
+        <div class="col">
             <form th:action="@{/logout}" method="post">
                 <button class="w-100 btn btn-dark btn-lg"
                         onclick="location.href='songs.html'" type="submit">

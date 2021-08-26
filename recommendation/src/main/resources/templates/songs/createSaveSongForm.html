@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    }
+</style>
+<body>
+<h2> 다른 사람에게 추천해줄만한 비슷한 곡을 저장해 보세요!</h2>
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+
+    <form role="form" action="/songs/save" th:object="${songForm}" method="post">
+        <div class="form-group">
+            <label th:for="songName">Song Name</label>
+
+            <input type="text" th:field="*{songName}" class="form-control" placeholder="제목을 입력하세요"
+                   th:class="${#fields.hasErrors('songName')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('songName')}" th:errors="*{songName}">Incorrect data</p>
+
+        </div>
+
+        <div class="form-group">
+            <label th:for="artist">artist</label>
+
+            <input type="text" th:field="*{artist}" class="form-control" placeholder="아티스트명을 입력하세요"
+                   th:class="${#fields.hasErrors('artist')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}">Incorrect data</p>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br/>
+    <div th:replace="fragments/footer :: footer" />
+</div> <!-- /container -->
+
+</body>
+</html>

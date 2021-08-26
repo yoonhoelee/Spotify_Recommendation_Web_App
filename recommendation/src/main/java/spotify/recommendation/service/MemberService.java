@@ -7,7 +7,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import spotify.recommendation.SessionConst;
+import spotify.recommendation.dto.MemberDto;
+import spotify.recommendation.dto.SongDto;
 import spotify.recommendation.entity.Member;
+import spotify.recommendation.entity.Song;
 import spotify.recommendation.login.argumentresolver.Login;
 import spotify.recommendation.repository.MemberRepository;
 
@@ -23,13 +26,19 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public void savePreference(@Login Member loginMember, int cluster){
+
         loginMember.setPreferredCluster(cluster);
+        memberRepository.save(loginMember);
     }
 
     public Long join(Member member) {
         validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
+    }
+
+    public void deactivate(@Login Member loginMember){
+        memberRepository.delete(loginMember);
     }
 
     public Optional<Member> findMemberEmail(String email) {
@@ -45,5 +54,14 @@ public class MemberService {
         }
     }
 
+    public MemberDto entityToDto(@Login Member loginMember){
+
+        MemberDto dto = new MemberDto();
+        dto.setAge(loginMember.getAge());
+        dto.setEmail(loginMember.getEmail());
+        dto.setName(loginMember.getName());
+        return dto;
+
+    }
 
 }

@@ -14,7 +14,8 @@ import static javax.persistence.FetchType.LAZY;
 @NoArgsConstructor
 public class Song {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "song_id")
     private Long id;
 
@@ -25,7 +26,6 @@ public class Song {
     @NotEmpty
     private String artist;
 
-    @NotEmpty
     private int cluster;
 
     @ManyToOne(fetch = LAZY)

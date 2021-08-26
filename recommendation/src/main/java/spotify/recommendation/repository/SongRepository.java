@@ -12,4 +12,5 @@ public interface SongRepository extends JpaRepository<Song, Long> {
 
     @Query("select s.cluster from Song s where s.songName = :songName and s.artist = :artist")
     int findCluster(@Param("songName") String songName, @Param("artist") String artist);
+
 }

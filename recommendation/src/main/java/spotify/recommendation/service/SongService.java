@@ -27,8 +27,13 @@ public class SongService {
 
     }
 
+
     public int findCluster(String songName, String artist){
         return songRepository.findCluster(songName, artist);
+    }
+
+    public List<Song> allFind(){
+        return songRepository.findAll();
     }
 
     public void save(String songName, String artist, int cluster, @Login Member loginMember){

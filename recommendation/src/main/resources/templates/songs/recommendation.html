@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header" />
+<body>
+
+<div class="container">
+    <div th:replace="fragments/bodyHeader :: bodyHeader" />
+    <div class="col">
+        <button class="w-100 btn btn-secondary btn-lg" type="button"
+                th:onclick="|location.href='@{/songs/save}'|">
+            곡 저장
+        </button>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Song Name</th>
+                <th>Artist</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="clusteredDto : ${clusteredDto}">
+                <td th:text="${clusteredDto.songName}"></td>
+                <td th:text="${clusteredDto.artist}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:replace="fragments/footer :: footer" />
+
+</div> <!-- /container -->
+
+</body>
+</html>

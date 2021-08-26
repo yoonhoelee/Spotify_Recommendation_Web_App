@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Getter @Setter
 @NoArgsConstructor
-public class Member extends BaseEntity{
+public class Member{
 
     @Id @GeneratedValue
     @Column(name = "member_id")
@@ -29,25 +29,20 @@ public class Member extends BaseEntity{
     @NotEmpty
     private String name;
 
-    @NotEmpty
     private int age;
 
-    @NotEmpty
-    @Enumerated(EnumType.STRING)
-    private Sex sex;
-
+    @Column(name = "preferred_cluster")
     private int preferredCluster;
 
     @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Song> songs = new ArrayList<>();
 
-    public Member(String email, String password, String name, int age, Sex sex) {
+    public Member(String email, String password, String name, int age) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.age = age;
-        this.sex = sex;
     }
 
 }

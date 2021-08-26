@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import java.util.Optional;
 import java.util.UUID;
 
-@EnableJpaAuditing
 @SpringBootApplication
 public class RecommendationApplication {
 
@@ -17,8 +16,4 @@ public class RecommendationApplication {
 		SpringApplication.run(RecommendationApplication.class, args);
 	}
 
-	@Bean  //lastModifiedBy 실행시키기 위해 uuid를 넣어준다
-	public AuditorAware<String> auditorProvider(){
-		return () -> Optional.of(UUID.randomUUID().toString());
-	}
 }
