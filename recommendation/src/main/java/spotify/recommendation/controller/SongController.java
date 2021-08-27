@@ -66,5 +66,21 @@ public class SongController {
         return "redirect:/";
     }
 
+    @GetMapping("/songs/delete")
+    public String deleteSongForm(Model model){
+        model.addAttribute("songForm", new SongForm());
+        return "songs/deleteForm";
+    }
+
+    @PostMapping("/songs/delete")
+    public String deleteSong(@Valid SongForm songForm, @Login Member loginMember, BindingResult result){
+        if (result.hasErrors()) {
+            return "songs/deleteForm";
+        }
+        String artist = songForm.getArtist();
+        String songName = songForm.getSongName();
+        songService.delete(songName, artist, loginMember);
+        return "redirect:/";
+    }
 
 }

@@ -41,6 +41,11 @@ public class MemberService {
         memberRepository.delete(loginMember);
     }
 
+    public void update(@Login Member loginMember, String updatedPw){
+        loginMember.setPassword(updatedPw);
+        memberRepository.save(loginMember);
+    }
+
     public Optional<Member> findMemberEmail(String email) {
         return memberRepository.findAll().stream()
                 .filter(m->m.getEmail().equals(email))

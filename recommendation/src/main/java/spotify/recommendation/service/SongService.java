@@ -36,10 +36,25 @@ public class SongService {
         return songRepository.findAll();
     }
 
+    public List<Song> findByMember(Long memberId){
+        List<Song> listByMemberId = songRepository.joinFetch();
+        return listByMemberId.stream().filter(s -> s.getMember().getId() == memberId).collect((Collectors.toList()));
+    }
+
     public void save(String songName, String artist, int cluster, @Login Member loginMember){
 
         Song song = new Song(songName, artist, cluster, loginMember);
         songRepository.save(song);
+    }
+
+    public void delete(String songName, String artist, @Login Member loginMember){
+        Song song = songRepository.findBySongNameAndArtist(songName, artist);
+        if(song.getMember().getId() == loginMember.getId()){
+            songRepository.delete(song);
+        }
+        else{
+            throw new IllegalStateException("본인이 추가한 곡인지 확인해주세요.");
+        }
     }
 
     public SongDto entityToDto(Song song){

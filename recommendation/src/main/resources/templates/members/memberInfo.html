@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header" />
-<body>
+<body style="background: url(https://avatars.slack-edge.com/2017-05-07/179302706689_13f452d1bc1869a7e316_512.png); background-size: 100% 100%;">
 
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
@@ -25,7 +25,44 @@
             </tbody>
         </table>
     </div>
+    <div>
+        <h3> 내가 추가한 곡 정보</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Song Name</th>
+                <th>Artist</th>
 
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="songListByMember : ${songListByMember}">
+                <td th:text="${songListByMember.songName}"></td>
+                <td th:text="${songListByMember.artist}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col">
+        <button class="w-100 btn btn-secondary btn-lg" type="button"
+                th:onclick="|location.href='@{/members/deactivate}'|">
+            회원 탈퇴
+        </button>
+    </div>
+    <div class="col">
+        <button class="w-100 btn btn-secondary btn-lg" type="button"
+                th:onclick="|location.href='@{/members/update}'|">
+            비밀번호 변경
+        </utton>
+    </div>
+
+    <div class="col">
+        <button class="w-100 btn btn-secondary btn-lg" type="button"
+                th:onclick="|location.href='@{/songs/delete}'|">
+            내가 추가한 곡 제거
+        </button>
+    </div>
     <div th:replace="fragments/footer :: footer" />
 
 </div> <!-- /container -->

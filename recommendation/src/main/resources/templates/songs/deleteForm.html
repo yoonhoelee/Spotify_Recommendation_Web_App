@@ -7,11 +7,11 @@
     }
 </style>
 <body style="background: url(https://avatars.slack-edge.com/2017-05-07/179302706689_13f452d1bc1869a7e316_512.png); background-size: 100% 100%;">
-<h2> 다른 사람에게 추천해줄만한 비슷한 곡을 저장해 보세요!</h2>
+<h2> 내가 추가한 곡을 삭제해 보세요</h2>
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
-    <form role="form" action="/songs/save" th:object="${songForm}" method="post">
+    <form role="form" action="/songs/delete" th:object="${songForm}" method="post">
         <div class="form-group">
             <label th:for="songName">Song Name</label>
 

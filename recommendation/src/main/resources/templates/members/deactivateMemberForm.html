@@ -11,7 +11,7 @@
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
 
-    <form role="form" action="/members/new" th:object="${memberForm}" method="post">
+    <form role="form" action="/members/deactivate" th:object="${deactivateForm}" method="post">
         <div class="form-group">
             <label th:for="email">email</label>
 
@@ -36,15 +36,6 @@
             <input type="text" th:field="*{name}" class="form-control" placeholder="이름을 입력하세요"
                    th:class="${#fields.hasErrors('name')}? 'form-control fieldError' : 'form-control'">
             <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect data</p>
-
-        </div>
-
-        <div class="form-group">
-            <label th:for="age">age</label>
-
-            <input type="number" th:field="*{age}" class="form-control" placeholder="나이를 입력하세요"
-                   th:class="${#fields.hasErrors('age')}? 'form-control fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Incorrect data</p>
 
         </div>
 

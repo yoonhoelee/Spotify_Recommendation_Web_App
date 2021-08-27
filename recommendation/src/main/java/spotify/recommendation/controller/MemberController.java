@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import spotify.recommendation.dto.MemberDto;
 import spotify.recommendation.dto.SongDto;
 import spotify.recommendation.entity.Member;
+import spotify.recommendation.entity.Song;
 import spotify.recommendation.login.argumentresolver.Login;
 import spotify.recommendation.service.MemberService;
 import spotify.recommendation.service.SongService;
@@ -49,6 +50,55 @@ public class MemberController {
     public String showMemberInfo(@Login Member loginMember, Model model){
         MemberDto memberDto = memberService.entityToDto(loginMember);
         model.addAttribute("memberDto", memberDto);
+        List<Song> songListByMember = songService.findByMember(loginMember.getId());
+        model.addAttribute("songListByMember", songListByMember);
         return "members/memberInfo";
+    }
+
+    @GetMapping("/members/deactivate")
+    public String deactivateMemberForm(Model model){
+        model.addAttribute("deactivateForm", new MemberDeactivateForm());
+        return "members/deactivateMemberForm";
+    }
+
+    @PostMapping("/members/deactivate")
+    public String deactivateMember(@Login Member loginMember, @Valid MemberDeactivateForm deactivateForm, BindingResult result){
+
+        if (result.hasErrors()) {
+            return "members/deactivateMemberForm";
+        }
+
+        String name = deactivateForm.getName();
+        String email = deactivateForm.getEmail();
+        String password = deactivateForm.getPassword();
+
+        if(loginMember.getName().equals(name) && loginMember.getEmail().equals(email) && loginMember.getPassword().equals(password)){
+            memberService.deactivate(loginMember);
+            return "home";
+        }
+        else{
+            return "members/deactivateMemberForm";
+        }
+    }
+
+    @GetMapping("/members/update")
+    public String memberUpdateForm(Model model){
+        model.addAttribute("passwordUpdateForm", new PasswordUpdateForm());
+        return "members/updateForm";
+    }
+
+    @PostMapping("/members/update")
+    public String deactivateMember(@Login Member loginMember, @Valid PasswordUpdateForm passwordUpdateForm, BindingResult result){
+        if (result.hasErrors()) {
+            return "members/updateForm";
+        }
+        if(loginMember.getPassword().equals(passwordUpdateForm.getCurrentPw())){
+            String updatedPassword = passwordUpdateForm.getUpdatedPw();
+            memberService.update(loginMember, updatedPassword);
+            return "members/passwordUpdated";
+        }
+        else{
+            return "members/updateForm";
+        }
     }
 }
