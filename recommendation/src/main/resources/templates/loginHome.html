@@ -39,6 +39,15 @@
                 </button>
             </form>
         </div>
+
+        <div class="col">
+            <form th:action="@{/api/login}" method="post">
+                <button class="w-100 btn btn-dark btn-lg"
+                        onclick="location.href='songs.html'" type="submit">
+                    내 최애 노래 확인
+                </button>
+            </form>
+        </div>
         <div class="col">
             <form th:action="@{/logout}" method="post">
                 <button class="w-100 btn btn-dark btn-lg"
