@@ -151,3 +151,4 @@ $RECYCLE.BIN/
 # Added
 *.yml
 recommendation/src/main/java/spotify/recommendation/entity/Keys.java
+.DS_Store
