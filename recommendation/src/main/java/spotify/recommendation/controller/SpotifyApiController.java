@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URI;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class SpotifyApiController {
@@ -62,7 +61,7 @@ public class SpotifyApiController {
     @GetMapping("/topartist")
     public Artist[] topArtist(){
         final GetUsersTopArtistsRequest getUsersTopArtistsRequest = spotifyApi.getUsersTopArtists()
-                .limit(10)
+                .limit(5)
                 .offset(0)
                 .time_range("medium_term")
                 .build();
@@ -76,5 +75,4 @@ public class SpotifyApiController {
         return new Artist[0];
 
     }
-
 }
