@@ -44,7 +44,12 @@ public class SongService {
     public void save(String songName, String artist, int cluster, @Login Member loginMember){
 
         Song song = new Song(songName, artist, cluster, loginMember);
-        songRepository.save(song);
+        if(songRepository.findBySongNameAndArtist(songName, artist)==null){
+            songRepository.save(song);
+        }
+        else{
+            throw new IllegalStateException("중복 곡이 아닌지 확인해주세요.");
+        }
     }
 
     public void delete(String songName, String artist, @Login Member loginMember){
