@@ -1,4 +1,4 @@
-package spotify.recommendation.controller;
+package spotify.recommendation.form;
 
 import lombok.Data;
 

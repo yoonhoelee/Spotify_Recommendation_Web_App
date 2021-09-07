@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import spotify.recommendation.dto.SongDto;
 import spotify.recommendation.entity.Member;
 import spotify.recommendation.entity.Song;
+import spotify.recommendation.form.SongForm;
 import spotify.recommendation.login.argumentresolver.Login;
 import spotify.recommendation.service.MemberService;
 import spotify.recommendation.service.SongService;
@@ -27,7 +28,7 @@ public class SongController {
     public String allSongs(Model model){
         List<Song> songs = songService.allFind();
         model.addAttribute("songs", songs);
-        return "/songs/list";
+        return "songs/list";
     }
 
     @GetMapping("/songs/new")
