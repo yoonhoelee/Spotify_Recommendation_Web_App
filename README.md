@@ -8,9 +8,8 @@ A web application that recommends songs based on songs on Top 200 Weekly chart o
 
 
 ## Project Overview
-This is a web app where users can get recommendation based on the songs that they like. Users can also add songs to the database so that other users can get recommendations that are not in the database. Furthermore, I am using Spotify API so that users can get a list of their favorite artist.
+This is a web app where users can get recommendation based on the songs that they like. Users can also add songs to the database so that other users can get recommendations that are not in the database. Furthermore, I used Spotify API so that users can get a list of their favorite artist.
 
-In this project, I aim to practice basic CRUD as well as working with interceptors in Java Spring. 
 
 ## Recommendation Model
 The recommendation model was made based on k-means clustering.
@@ -23,7 +22,12 @@ I have used an external library to help me retrieve the necessary data such as a
 Special thanks to Jonas Thelemann, you can find the links to his [library posted on Github](https://github.com/thelinmichael/spotify-web-api-java)
 
 
-## Specifics of the Application
-The web application was made using the following
-* Java Spring Boot running on Java 11 for Backend
-* MySql as the data base.
+## Limitations
+The Spotify API part of the recommendation returns a list of user's favorite artist in a json format. As this was a project intended to focus mainly on the backend side of a web application, the projet displays a raw json file which may not be visually satisfying. I recommend using a json formatter extension to beautify this file.
+
+
+## Deployment
+This project is deployed on AWS. I have used AWS's Elastic Beanstalk to deploy this app. You can find the [deployed application on AWS.](http://spotifyrecommendation-env.eba-mqmmdyum.ap-northeast-2.elasticbeanstalk.com/) 
+I have used a MySql client on AWS RDS for the database, but this will work on any other form of relational DBs.
+I am planning on taking this application down after the free-trial of AWS ends (August 2022).
+For those who wish to deploy this application, you would need to refactor the 'SpotifyApiController' code so that it will return the URI of your actual application insted of local host.
