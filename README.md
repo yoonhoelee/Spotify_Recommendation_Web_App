@@ -5,6 +5,7 @@ A web application that recommends songs based on songs on Top 200 Weekly chart o
 
 ## Data
 [Spotify Top 200 Charts (2020-2021)](https://www.kaggle.com/sashankpillai/spotify-top-200-charts-20202021) provided on Kaggle.
+The data fed to the MySql database is pre-clustered.
 
 
 ## Project Overview
