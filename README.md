@@ -28,7 +28,7 @@ The Spotify API part of the recommendation returns a list of user's favorite art
 
 
 ## Deployment
-This project is deployed on AWS. I have used AWS's Elastic Beanstalk to deploy this app. You can find the [deployed application on AWS.](http://spotifyrecommendation-env.eba-mqmmdyum.ap-northeast-2.elasticbeanstalk.com/) 
+### This project used to be deployed using AWS elastic beanstalk but was removed due to AWS charges.
 I have used a MySql client on AWS RDS for the database, but this will work on any other form of relational DBs.
 I am planning on taking this application down after the free-trial of AWS ends (August 2022).
 For those who wish to deploy this application, you would need to refactor the 'SpotifyApiController' code so that it will return the URI of your actual application insted of local host.
